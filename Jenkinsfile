@@ -8,5 +8,10 @@ pipeline {
         bat 'gradle uploadArchives'
       }
     }
+    stage(' Mail Notification ') {
+      steps {
+        mail(subject: 'Modification', body: 'This is a sample mail for notification')
+      }
+    }
   }
 }
