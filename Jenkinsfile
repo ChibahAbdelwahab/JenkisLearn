@@ -5,8 +5,16 @@ pipeline {
       steps {
         bat 'gradle build'
         bat 'gradle javadoc'
-        bat 'gradle uploadArchives'
+        archiveArtifacts(artifacts: 'build/libs/*.jar , build/docs/javadoc/*', onlyIfSuccessful: true)
       }
+       post {
+            failure {
+              mail(subject: 'build finished', body: 'build failed', to: 'fa_djellal@esi.dz')
+            }
+            success {
+              mail(subject: 'build finished', body: 'build success', to: 'fa_djellal@esi.dz')
+            }
+          }
     }
     stage(' Mail Notification ') {
       steps {
