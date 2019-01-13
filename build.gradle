@@ -1,0 +1,33 @@
+plugins {
+ 
+}
+
+
+group 'matrix'
+
+
+
+apply plugin: 'java'
+apply plugin: 'jacoco'
+
+
+uploadArchives {
+    repositories {
+        maven {
+            credentials {
+                username "myMavenRepo"
+                password "test"
+            }
+            url "https://mymavenrepo.com/repo/bXuDmaIlZ03gOsnSAGyl/"
+        }
+    }
+}
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
