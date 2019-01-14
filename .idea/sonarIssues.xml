@@ -23,6 +23,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/com/example/MatrixMathematicsTests.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/com/example/example/MatrixMathematicsTests.java">
           <value>
             <set />
@@ -39,6 +44,31 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/com/example/service/MatrixMathematics.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/com/exception/NoSquareException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/com/model/Matrix.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/com/service/MatrixMathematics.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/com/te/MatrixMathematicsTests.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/com/test/MatrixMathematicsTests.java">
           <value>
             <set />
           </value>
