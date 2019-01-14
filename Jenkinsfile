@@ -9,8 +9,7 @@ pipeline {
         }
 
         success {
-         
-
+          mail(subject: 'build finished', body: 'build failed', to: 'fa_chibah@esi.dz')
         }
 
       }

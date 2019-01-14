@@ -38,6 +38,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../SALIM/src/main/java/com/example/exception/NoSquareException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
       </map>
     </option>
   </component>
