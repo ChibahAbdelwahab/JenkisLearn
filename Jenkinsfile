@@ -2,27 +2,30 @@ pipeline {
   agent any
   stages {
     stage('Build') {
+      post {
+        failure {
+          mail(subject: 'build finished', body: 'build failed', to: 'fa_chibah@esi.dz')
+
+        }
+
+        success {
+          mail(subject: 'build finished', body: 'build success', to: 'fa_chibah@esi.dz')
+
+        }
+
+      }
       steps {
         bat 'gradle build'
         bat 'gradle myJavaDocs'
         archiveArtifacts(artifacts: 'build/libs/*.jar , build/docs/javadoc/*', onlyIfSuccessful: true)
       }
-      post {
-      failure {
-        mail(subject: 'build finished', body: 'build failed', to: 'fa_chibah@esi.dz')
-      }
-      success {
-        mail(subject: 'build finished', body: 'build success', to: 'fa_chibah@esi.dz')
-      }
     }
-    }
-    
     stage('Code Analysis') {
       parallel {
         stage('Code Analysis') {
           steps {
             withSonarQubeEnv('sonarqube') {
-              bat 'sonar-scanner'
+              bat(script: 'sonar-scanner', returnStatus: true)
             }
 
             waitForQualityGate true
@@ -48,7 +51,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        slackSend(channel: 'buildsjenkins', color: '#ffffff', message: 'tree reached slack notification')
+        slackSend(channel: 'jenkis', color: '#ffffff', message: 'tree reached slack notification')
       }
     }
   }
