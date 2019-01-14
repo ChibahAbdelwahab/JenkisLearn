@@ -9,7 +9,7 @@ pipeline {
         }
 
         success {
-          mail(subject: 'build finished', body: 'build success', to: 'fa_chibah@esi.dz')
+         
 
         }
 
@@ -18,6 +18,11 @@ pipeline {
         bat 'gradle build'
         bat 'gradle myJavaDocs'
         archiveArtifacts(artifacts: 'build/libs/*.jar , build/docs/javadoc/*', onlyIfSuccessful: true)
+      }
+    }
+     stage('Mail Notification') {
+      steps {
+       mail(subject: 'build finished', body: 'build success', to: 'fa_chibah@esi.dz')
       }
     }
     stage('Code Analysis') {
