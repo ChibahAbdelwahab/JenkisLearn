@@ -1,4 +1,4 @@
-package com.example.exception;
+package example.exception;
 
 public class NoSquareException extends Exception {
 

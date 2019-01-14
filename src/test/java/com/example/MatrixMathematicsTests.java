@@ -1,19 +1,17 @@
 package test.java.com.example;
 
-import static org.junit.Assert.*;
-
-
+import example.model.Matrix;
+import example.service.MatrixMathematics;
+import example.exception.NoSquareException;
 import org.junit.Test;
 
-import com.example.exception.NoSquareException;
-import com.example.model.Matrix;
-import com.example.service.MatrixMathematics;
+import static org.junit.Assert.*;
 
 public class MatrixMathematicsTests {
 
 
 	@Test
-	public void testDeterminant() throws NoSquareException{
+	public void testDeterminant() throws NoSquareException {
 		double data1[][] = {{-1,2,5},{1,2,3},{-2,8,10}};
 		Matrix matrice = new Matrix(data1);
 		assert(MatrixMathematics.determinant(matrice)==32);
