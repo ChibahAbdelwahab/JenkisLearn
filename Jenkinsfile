@@ -4,9 +4,14 @@ pipeline {
     stage('Build') {
       post {
         failure {
-          mail(subject: 'build Failed', body: 'build failed', to: 'fa_chibah@esi.dz')
+          mail(subject: 'build finished', body: 'build failed', to: 'fa_chibah@esi.dz')
 
         }
+
+        success {
+                   mail(subject: 'build finished', body: 'build success', to: 'fa_chibah@esi.dz')
+
+             }
 
       }
       steps {
@@ -15,12 +20,6 @@ pipeline {
         archiveArtifacts(artifacts: 'build/libs/*.jar , build/docs/javadoc/*', onlyIfSuccessful: true)
       }
     }
-    stage('Mail Notification') {
-          steps {
-                      mail(subject: 'OK ', body: 'build OK', to: 'fa_chibah@esi.dz')
-
-            }
-        }
     stage('Code Analysis') {
       parallel {
         stage('Code Analysis') {
@@ -44,7 +43,6 @@ pipeline {
             not {
               changeRequest target: 'master'
             }
-
           }
       steps {
         bat 'gradle uploadArchives'
