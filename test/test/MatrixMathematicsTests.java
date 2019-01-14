@@ -1,4 +1,4 @@
-package com.test;
+package test;
 
 import com.model.Matrix;
 import com.service.MatrixMathematics;
