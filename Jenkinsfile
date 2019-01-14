@@ -9,7 +9,8 @@ pipeline {
         }
 
         success {
-          mail(subject: 'build finished', body: 'build failed', to: 'fa_chibah@esi.dz')
+          mail(subject: 'build finished', body: 'build success', to: 'fa_chibah@esi.dz')
+
         }
 
       }
@@ -17,11 +18,6 @@ pipeline {
         bat 'gradle build'
         bat 'gradle myJavaDocs'
         archiveArtifacts(artifacts: 'build/libs/*.jar , build/docs/javadoc/*', onlyIfSuccessful: true)
-      }
-    }
-     stage('Mail Notification') {
-      steps {
-       mail(subject: 'build finished', body: 'build success', to: 'fa_chibah@esi.dz')
       }
     }
     stage('Code Analysis') {
@@ -43,11 +39,8 @@ pipeline {
       }
     }
     stage('Deployment') {
-     when {
-        not {
-          changeRequest target: 'master'
-        }
-
+      when {
+        branch 'master'
       }
       steps {
         bat 'gradle uploadArchives'
@@ -55,13 +48,10 @@ pipeline {
     }
     stage('Slack Notification') {
       when {
-        not {
-          changeRequest target: 'master'
-        }
-
+        branch 'master'
       }
       steps {
-        slackSend(channel: 'jenkis', color: '#ffffff', message: 'tree reached slack notification')
+        slackSend(channel: 'jenkins', color: '#ffffff', message: 'tree reached slack notification')
       }
     }
   }
