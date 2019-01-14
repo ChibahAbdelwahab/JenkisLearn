@@ -20,7 +20,7 @@ public class MatrixMathematicTest {
         assertEquals(MatrixMathematics.determinant(m1),det,0);
     }
 
-
+//teeeeest
     @Test
     public void cofactorTest () throws NoSquareException{
         double [][] mat = {{6,4,0},{4,6,1},{0,1,6}};
