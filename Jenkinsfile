@@ -4,12 +4,7 @@ pipeline {
     stage('Build') {
       post {
         failure {
-          mail(subject: 'build finished', body: 'build failed', to: 'fa_chibah@esi.dz')
-
-        }
-
-        success {
-          mail(subject: 'build finished', body: 'build success', to: 'fa_chibah@esi.dz')
+          mail(subject: 'build Failed', body: 'build failed', to: 'fa_chibah@esi.dz')
 
         }
 
@@ -20,6 +15,12 @@ pipeline {
         archiveArtifacts(artifacts: 'build/libs/*.jar , build/docs/javadoc/*', onlyIfSuccessful: true)
       }
     }
+    stage('Mail Notification') {
+          steps {
+                      mail(subject: 'OK ', body: 'build OK', to: 'fa_chibah@esi.dz')
+
+            }
+        }
     stage('Code Analysis') {
       parallel {
         stage('Code Analysis') {
@@ -39,17 +40,23 @@ pipeline {
       }
     }
     stage('Deployment') {
-      when {
-        branch 'master'
-      }
+     when {
+            not {
+              changeRequest target: 'master'
+            }
+
+          }
       steps {
         bat 'gradle uploadArchives'
       }
     }
     stage('Slack Notification') {
-      when {
-        branch 'master'
-      }
+     when {
+            not {
+              changeRequest target: 'master'
+            }
+
+          }
       steps {
         slackSend(channel: 'jenkins', color: '#ffffff', message: 'tree reached slack notification')
       }
