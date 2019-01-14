@@ -51,7 +51,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        slackSend(channel: 'buildsjenkins', color: '#ffffff', message: 'tree reached slack notification')
+        slackSend(channel: 'jenkins', color: '#ffffff', message: 'tree reached slack notification')
       }
     }
   }
