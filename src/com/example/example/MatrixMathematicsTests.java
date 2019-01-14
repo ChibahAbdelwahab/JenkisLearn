@@ -1,8 +1,8 @@
-package test.java.com.example;
+package com.example.example;
 
-import example.model.Matrix;
-import example.service.MatrixMathematics;
-import example.exception.NoSquareException;
+import com.example.model.Matrix;
+import com.example.service.MatrixMathematics;
+import com.example.exception.NoSquareException;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
